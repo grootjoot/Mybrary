@@ -5,11 +5,13 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const expressLayouts = require ('express-ejs-layouts')
 const app = express()
+const bodyParser = require('body-parser')
 
 app.use(express.static('public'))
 app.use(expressLayouts)
-app.use(express.urlencoded({extended: true}))
+//app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
